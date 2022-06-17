@@ -420,7 +420,10 @@ a{
   transition: var(--mainTransition);
 }
 
-
+#cartTotalValue{
+  text-align: center;
+  margin-top: 20px;
+}
 
 /*========End of Cart=======*/ 
 /*=====About us======*/

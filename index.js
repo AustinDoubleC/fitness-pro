@@ -11,13 +11,14 @@ const category = document.getElementById("category")
 const btnMainMenu = document.getElementById("btn-main-menu")
 const mainMenu =document.getElementById("main-menu")
 const btnMenuClose = document.getElementById("btn-menu-close")
-
+const cartTotalValue = document.getElementById("cartTotalValue")
 
 
 let cart = []
 let cartId = []
 let cartCurrent = 0
 let cartValue = 0
+let cartTotal = 0
 openCartButton.addEventListener("click",()=>showCart())
 closeCartButton.addEventListener("click",()=>closeCart())
 btnMenuClose.addEventListener("click",()=>closeMenu())
@@ -54,8 +55,9 @@ const addProduct =(id)=>{
         cart.push({...productToAdd, value:1})
         //display result
         let result = ""
+        cartTotal = 0
         cart.forEach(product => {
-            cartValue = cartValue + product.value*product.price
+            cartTotal = cartTotal + product.price*product.value
             result += `
             <div class="cart-item">
                 <img src=${product.img}>
@@ -70,6 +72,9 @@ const addProduct =(id)=>{
             </div>
             `})
         cartList.innerHTML = result
+        cartTotalValue.innerHTML = `Cart total: £${cartTotal.toFixed(2)}`
+
+        
         cartCurrent = cartCurrent +1
         //show cart item total
         document.querySelector(".cart-total").style.display ="block"
@@ -108,17 +113,13 @@ cartList.addEventListener("click",event=>{
         document.querySelector(".cart-total").innerText = cartCurrent
         cartList.removeChild(removeItem.parentElement.parentElement.parentElement)
         cart = cart.filter(item=>item.id !== id)
-        if(cartCurrent===0){
-            document.querySelector(".cart-total").style.display ="none"
-            cartList.innerHTML = `<h3 id="cart-empty">Your cart is empty</h3>`
-            btnPayment.style.display="none"
-        }
         saveCart(cart)
         let tempButton = ""
         tempButton = "btn-"+id
         document.getElementById(tempButton).innerHTML = `<i class="fas fa-shopping-cart"></i>
         add to bag`
         document.getElementById(tempButton).classList.remove("btn-disable")
+        reloadCart()
         }
         
     }else if (event.target.classList.contains("fa-trash-can")){
@@ -126,10 +127,6 @@ cartList.addEventListener("click",event=>{
         let id = removeItem.id;
         let tempItem = cart.find(item => item.id ===id)
         cartCurrent = cartCurrent -tempItem.value
-        if(cartCurrent===0){
-            document.querySelector(".cart-total").style.display ="none"
-            btnPayment.style.display="none"
-        }
         document.querySelector(".cart-total").innerText = cartCurrent
         cartList.removeChild(removeItem.parentElement.parentElement.parentElement)
         cart = cart.filter(item=>item.id !== id)
@@ -139,9 +136,7 @@ cartList.addEventListener("click",event=>{
         document.getElementById(tempButton).innerHTML = `<i class="fas fa-shopping-cart"></i>
         add to bag`
         document.getElementById(tempButton).classList.remove("btn-disable")
-        if (cartCurrent==0){
-        cartList.innerHTML = `<h3 id="cart-empty">Your cart is empty</h3>`
-        }
+        reloadCart()
     }   
 })
 
@@ -227,13 +222,16 @@ const renderAll = () =>{
     //render cart list
 
     let result = ""
+    cartTotal = 0
         cart.forEach(product => {
+            cartTotal = cartTotal + product.price*product.value
             result += `
             <div class="cart-item">
                 <img src=${product.img}>
                 <div class="cart-item-value">
                     <p>${product.name}</p>
                     <p>£${(product.price*product.value).toFixed(2)}</p>
+
                     <div class="cart-item-qty">
                         <i class="fa-solid fa-circle-minus" id=${product.id}></i><p>${product.value}</p><i class="fa-solid fa-circle-plus" id=${product.id}></i>
                         <i class="fa-solid fa-trash-can" id=${product.id}></i>
@@ -245,12 +243,15 @@ const renderAll = () =>{
             result=`<h3 id="cart-empty">Your cart is empty</h3>`
         }
         cartList.innerHTML = result
+        cartTotalValue.innerHTML = `Cart total: £${cartTotal.toFixed(2)}`
 }
 renderAll()
 
 const reloadCart =()=>{
     let result = ""
+    cartTotal = 0
         cart.forEach(product => {
+            cartTotal = cartTotal + product.price*product.value
             result += `
             <div class="cart-item">
                 <img src=${product.img}>
@@ -264,7 +265,15 @@ const reloadCart =()=>{
                 </div>
             </div>
             `})
+            
         cartList.innerHTML = result
+        if(cartCurrent===0){
+            document.querySelector(".cart-total").style.display ="none"
+            cartList.innerHTML = `<h3 id="cart-empty">Your cart is empty</h3>`
+            btnPayment.style.display="none"
+        }
+        cartTotalValue.innerHTML = `Cart total: £${cartTotal.toFixed(2)}`
+
 }
 
 //payment
