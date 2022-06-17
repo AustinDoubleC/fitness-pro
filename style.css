@@ -1,0 +1,477 @@
+:root {
+    --primaryColor: #51d5f0;
+    --secondaryColor: #ffc400;
+    --mainWhite: #fff;
+    --mainBlack: #222;
+    --mainGrey: #ececec;
+    --mainSpacing: 0.1rem;
+    --mainTransition: all 0.2s linear;
+  }
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+body {
+    color: var(--mainBlack);
+    background: var(--mainWhite);
+    font-family: "Lato", sans-serif;
+  }
+  h1{
+    padding-top: 60px;
+    margin-left: 50px;
+    font-size: 36px;
+  }
+
+/*========Nav Bar=======*/
+.nav-container{
+    position: sticky;
+    top:0;
+    z-index: 1;
+    height: 60px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    background-color: var(--mainBlack);
+    align-items: center;
+}
+.logo{
+  color: var(--mainWhite);
+  font-size: 1.5em;
+  margin-left: 1em;
+}
+
+.nav-bar{
+    display: flex;
+}
+
+.nav-menu{
+    display: flex;
+}
+.nav-item{
+    list-style: none;
+    margin-right: 20px;
+}
+
+.fa-cart-shopping{
+    cursor: pointer;
+    color: var(--mainWhite);
+    margin-right: 15px;
+}
+a{
+  text-decoration: none;
+  color: var(--mainWhite);
+}
+
+.cart-total{
+  position: absolute;
+  right: 5px;
+  top: 10px;
+  background-color: var(--secondaryColor);
+  padding:  1px 3px;
+  border-radius: 5px;
+  display: none;
+}
+
+
+/*========End of Nav Bar=======*/
+/*========Hero=======*/
+#home{
+  height: 60px;
+  top:0;
+  position: absolute;
+}
+
+.hero{
+  width:100%;
+  height: 500px;
+}
+.hero h1{
+  padding-top: 0px;
+}
+/* Slideshow container */
+.slideshow-container {
+  max-width: 1000px;
+  position: relative;
+  margin: auto;
+}
+
+/* Hide the images by default */
+.mySlides {
+  display: none;
+}
+
+/* Next & previous buttons */
+.prev, .next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  margin-top: -22px;
+  padding: 16px;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+}
+
+/* Position the "next button" to the right */
+.next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover, .next:hover {
+  background-color: rgba(0,0,0,0.8);
+}
+
+/* Caption text */
+#banner1 {
+  color: var(--mainBlack);
+  font-size: 36px;
+  text-shadow: 0px 0px 3px black;
+  color: white;
+  padding: 25px 50px;
+  position: absolute;
+  bottom: 150px;
+  width: 100%;
+  text-align: left;
+}
+#banner2 {
+  color: black;
+  font-size: 30px;
+  padding: 8px 12px;
+  position: absolute;
+  bottom: 50px;
+  width: 100%;
+  text-align: center;
+  background-color:var(--mainGrey);
+}
+#banner3 {
+  color: white;
+  font-size: 36px;
+  padding: 8px 12px;
+  position: absolute;
+  background-color:var(--mainBlack);
+  bottom: 50px;
+  width: 100%;
+  text-align: center;
+}
+
+/* The dots/bullets/indicators */
+.dot {
+  cursor: pointer;
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+
+.active, .dot:hover {
+  background-color: #717171;
+}
+
+/* Fading animation */
+.fade {
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+@keyframes fade {
+  from {opacity: .4}
+  to {opacity: 1}
+}
+/*========End of Hero=======*/
+/*========Main=======*/
+.main-section{
+  width: 100%;
+}
+#products{
+  margin-top: 50px;
+}
+.products-container{
+    width: 90vw;
+    margin: 50px auto 0px;
+    max-width: 1170px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    grid-column-gap: 1.5rem;
+    grid-row-gap: 2rem;
+}
+.product{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--mainGrey);
+  border: solid 1px var(--mainGrey);
+  box-shadow: 2px 2px 5px #555;
+}
+
+.product-image{
+    width:100%;
+
+}
+
+.product h3 {
+    text-transform: capitalize;
+    font-size: 1.1rem;
+    margin-top: 1rem;
+    letter-spacing: var(--mainSpacing);
+    text-align: center;
+  }
+  
+  .product h4 {
+    margin-top: 0.7rem;
+    letter-spacing: var(--mainSpacing);
+    color: var(--mainBlack);
+  }
+  .bag-btn{
+    margin: 0.7rem auto 1rem;
+    letter-spacing: var(--mainSpacing);
+    text-align: center;
+    background-color: #51d5f0;
+    width: 150px;
+    border-radius: 5px;
+    padding: 5px 10px;
+  }
+
+  .bag-btn:hover,
+  .bag-btn:active{
+    cursor: pointer;
+    background-color: var(--secondaryColor);
+    color:var(--mainWhite);
+    transition: var(--mainTransition);
+  }
+
+  .btn-disable,
+  .btn-disable:hover,
+  .btn-disable:active{
+    cursor: default;
+    background-color: var(--mainBlack);
+    color:var(--mainWhite);
+  }
+
+  .fa-shopping-cart {
+    margin-right: 0.5rem;
+  }
+
+/*========End of Main=======*/
+ 
+  .cart-container{
+    width: 300px;
+    height: calc(100% - 60px);
+    background: var(--mainGrey);
+    position: fixed;
+    top: 60px;
+    right: 0;
+    z-index: 2;
+    display: none;
+    overflow: auto;
+  }
+
+  .disable{
+    display: block;
+  }
+
+  #btn-close{
+    cursor: pointer;
+    text-align: right;
+    margin-top: 10px;
+    margin-right: 10px;
+    color: var(--mainBlack);
+  }
+  #btn-close:hover,
+  #btn-close:active{
+    color: var(--secondaryColor);
+  }
+
+  .cart-item img{
+    width:75px;
+    height: 75px;
+    display: flex;;
+  }
+
+  .cart-item{
+    display: flex;
+    margin: 10px;
+    justify-content: start;
+    align-items: center;
+  }
+
+
+  .cart-item-value{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: 20px;
+    width: 100%;
+    height: 60px;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+.cart-item-qty{
+  display: flex;
+}
+
+.cart-item-qty p,
+.cart-item-qty i{
+  margin-right: 30px;
+}
+
+.cart-item-qty p:hover,
+.cart-item-qty i:hover,
+.cart-item-qty p:active,
+.cart-item-qty i:active{
+  cursor: pointer;
+  color: var(--secondaryColor);
+}
+/*========End of Cart=======*/ 
+/*=====About us======*/
+#about{
+  height: 500px;
+  margin-top: 50px;
+}
+
+/*
+
+Contact
+
+*/
+footer{  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+#allContacts{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  background-color: var(--mainBlack);
+  width: 100%;
+  color: var(--mainWhite);
+  padding-top: 50px;
+  padding-bottom: 100px;
+  margin-top: 50px;
+}
+
+#hotline{
+  max-width: 400px;
+  margin-left: 100px;
+  margin-right: 100px;
+}
+#hotline p{
+  margin-top: 15px;
+}
+
+#hotline a{
+  font-weight: bold;
+}
+
+#hotline a:hover,
+#hotline a:active{
+  color: var(--secondaryColor);
+}
+
+.businessHour{
+  margin-left: 20px;
+  font-weight: 400;
+}
+
+/*
+Form
+*/
+
+form p{
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+label{
+  font-size: 20px;
+  margin-bottom: 5px;
+}
+
+#input-container{
+  display: flex;
+}
+
+.input{
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+  margin-right: 15px;
+}
+#input-message{
+  width:500px;
+  height: 100px;
+  text-align: start;
+  font-size: 16px;
+  border-radius: 5px;
+}
+#input-name{
+  font-size: 16px;
+  height: 25px;
+  border-radius: 5px;
+}
+
+#input-name:focus,
+#input-email:focus,
+#input-message:focus{
+  outline-color: var(--primaryColor);
+  outline-style:double;
+  outline-width: 2px;
+}
+
+
+#input-email{
+  font-size: 16px;
+  height: 25px;
+  border-radius: 5px;
+}
+
+#btnSubmit{
+  background-color: var(--primaryColor);
+  border-radius: 5px;
+  font-size: 20px;
+  padding: 5px 10px;
+  border: var(--mainBlack) 3px solid;
+  color: var(--mainBlack);
+}
+#btnSubmit:hover,
+#btnSubmit:hover{
+  cursor: pointer;
+  border: var(--primaryColor) 3px solid;
+  color: var(--mainGrey);
+  background-color: var(--secondaryColor);
+}
+
+
+/*========End of About us=======*/ 
+
+/*=====Location======*/
+#location{
+  height: 500px;
+}
+
+#shop-map{
+  width: 500px;
+}
+
+.map-container{
+  display: flex;
+  width: 90%;
+  justify-content: space-around;
+}
+.address-container{
+  display: flex;
+  flex-direction: column;
+}
+/*========End of Location=======*/ 

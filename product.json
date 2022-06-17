@@ -1,0 +1,36 @@
+{"items":[
+    {"id":"1",
+        "name":"Adjustable bench",
+        "price":"279.95",
+        "img":"./image/adjustable_bench.jpg"
+},{"id":"2",
+    "name":"Barbell",
+    "price":"149.95",
+    "img":"./image/barbell.jpg"
+},{"id":"3",
+    "name":"Flat bench",
+    "price":"69.95",
+    "img":"./image/bench.jpg"
+},{"id":"4",
+    "name":"Iron plate set",
+    "price":"109.95",
+    "img":"./image/plate.jpg"
+},{"id":"5",
+    "name":"Dumbbell",
+    "price":"259.95",
+    "img":"./image/dumbbell.jpg"
+},{"id":"6",
+    "name":"Power rack",
+    "price":"359.95",
+    "img":"./image/powerrack.jpg"
+},{"id":"7",
+    "name":"Squat rack",
+    "price":"149.95",
+    "img":"./image/squatrack.jpg"
+},{"id":"8",
+    "name":"Cable machine",
+    "price":"249.95",
+    "img":"./image/cable_machine.jpg"
+}
+]
+}

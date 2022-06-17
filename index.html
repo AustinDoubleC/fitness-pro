@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <script src="https://kit.fontawesome.com/a9d7cdc151.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
+    <title>Fitness Pro</title>
+</head>
+<body>
+    <nav class="nav-container">
+        <span class="logo">Fitness <i class="fa-solid fa-dumbbell"></i> Pro</span>
+        <div class="nav-bar">
+                <ul class="nav-menu">
+                    <li class="nav-item" id="nav-home"><a href="#home">Home</a></li>
+                    <li class="nav-item" id="nav-products"><a href="#products">Products</a></li>
+                    <li class="nav-item" id="nav-about"><a href="#about">location</a></li>
+                    <li class="nav-item" id="nav-location"><a href="#location">About us</a></li>
+                </ul>
+            <p class="cart-total">0</p>
+            <i class="fa-solid fa-cart-shopping" id="btn-cart"></i>
+            
+        </div>
+    </nav>
+    <div id="home"></div>
+    <header class="hero" id="hero">
+        <div class="slideshow-container">
+            <!-- Full-width images with number and caption text -->
+            <div class="mySlides fade">
+              <a href="#products"><img src="./image/banner1.png" style="width:100%"></a>
+              <div id="banner1">
+                <h2>Dreaming of Summer body?</h2>
+                <h3>Shop our equipment to get it.</h3>
+              </div>
+            </div>
+          
+            <div class="mySlides fade">
+                <a href="#location"><img src="image/banner2.jpg" style="width:100%"></a>
+              <div id="banner2">
+                <h2>New equipment in store</h2>
+                <h3>Visit our flagship store</h3>
+              </div>
+            </div>
+          
+            <div class="mySlides fade">
+                <a href="#about"><img src="image/banner3.jpg" style="width:100%"></a>
+              <div id="banner3">
+                <h3>Don't know how to build your home gym?</h3>
+                <h2>Contact our advisor for advice</h2>
+              </div>
+            </div>
+          
+            <!-- Next and previous buttons -->
+            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+            <a class="next" onclick="plusSlides(1)">&#10095;</a>
+          </div>
+          <br>
+          
+          <!-- The dots/circles -->
+          <div style="text-align:center">
+            <span class="dot" onclick="currentSlide(1)"></span>
+            <span class="dot" onclick="currentSlide(2)"></span>
+            <span class="dot" onclick="currentSlide(3)"></span>
+          </div>
+    </header>
+    <main>
+        <section class="main-section" id="products">
+            <h1>OUR PRODUCTS</h1>
+            <div class="products-container">
+
+            </div>
+        </section>
+        <section class="main-section" id="location">
+            <h1>LOCATION</h1>
+            <div class="map-container">
+                <div class="address-container">
+                    <h3>Address:</h3>
+                    <p>Victoria Center</p>
+                    <p>Lower Parliament St</p>
+                    <p>Nottingham NG1 3QN</p>
+                </div>
+                <img src="./image/map.png" id="shop-map">
+            </div>
+        </section>
+        <section class="main-section" id="about">
+            <h1>CONTACT US</h1>
+            <div id="allContacts">
+              <div id="hotline">
+                  <h2>Customer service</h2>
+                  <p>Hotline: +44 012-34567-999</p>
+                  <p>Business hour</p>
+                  <p class="businessHour">Mon-Fri: 09:00-17:00</p>
+                  <p class="businessHour">Sat-Fri: 10:00-16:00</p>
+                  <p>email: <a href="mailto:austinccy81@gmail.com">cs@fitnesspro.com</a></p>
+              </div>
+              <form action="https://formsubmit.co/austinccy81@gmail.com" method="POST">
+                  <p>Send us a quick email</p>
+                  <div id="input-container">
+                      <div class="input">
+                          <label>Name</label>
+                          <input type="text" id="input-name" name="name" placeholder="your name" required>
+                      </div>
+                      <div class="input">
+                          <label>Email</label>
+                          <input type="email" id="input-email" name="email" placeholder="your email" required>
+                          <input type="hidden" name="_next" value="https://austindoublec.github.io/portfolio/thankyou.html">
+                      </div>
+                  </div>
+                      <div class="input">
+                          <label>Message</label>
+                          <textarea id="input-message" name="message" required></textarea>
+                      </div>
+                  <button type="submit" id="btnSubmit">Submit</button>
+              </form>
+          </div>
+        </section>
+    </main>
+    <div class="cart-container">
+        <p id="btn-close"><i class="fa-solid fa-xmark"></i> close</p>
+        <div class="cart-list">
+        </div>
+    </div>
+    <footer></footer>
+
+    <script src="index.js"></script>
+</body>
+</html>
