@@ -6,21 +6,32 @@ const cartList = document.querySelector(".cart-list")
 const btnPayment = document.querySelector(".btn-payment")
 const paymentDOM = document.querySelector(".payment-container")
 const closePaymentButton = document.getElementById("btn-payment-close")
+const formDOM = document.querySelector(".payment-form")
+const category = document.getElementById("category")
+const btnMainMenu = document.getElementById("btn-main-menu")
+const mainMenu =document.getElementById("main-menu")
+const btnMenuClose = document.getElementById("btn-menu-close")
+
 
 
 let cart = []
 let cartId = []
 let cartCurrent = 0
+let cartValue = 0
 openCartButton.addEventListener("click",()=>showCart())
 closeCartButton.addEventListener("click",()=>closeCart())
+btnMenuClose.addEventListener("click",()=>closeMenu())
+mainMenu.addEventListener("mouseleave",()=>closeMenu())
+btnMainMenu.addEventListener("click",()=>showMenu())
+
 
 const getProducts =async ()=>{
         let result = await fetch("product.json")
         let data = await result.json();
         let products = data.items;
         products = products.map(item => {
-            const {id, name, price, img} = item
-            return {id, name, price, img}
+            const {id, name, price, type, img} = item
+            return {id, name, price,type, img}
         })
         return products
 }
@@ -44,11 +55,13 @@ const addProduct =(id)=>{
         //display result
         let result = ""
         cart.forEach(product => {
+            cartValue = cartValue + product.value*product.price
             result += `
             <div class="cart-item">
                 <img src=${product.img}>
                 <div class="cart-item-value">
                     <p>${product.name}</p>
+                    <p>£${(product.price*product.value).toFixed(2)}</p>
                     <div class="cart-item-qty">
                         <i class="fa-solid fa-circle-minus" id=${product.id}></i><p>${product.value}</p><i class="fa-solid fa-circle-plus" id=${product.id}></i>
                         <i class="fa-solid fa-trash-can" id=${product.id}></i>
@@ -75,6 +88,8 @@ cartList.addEventListener("click",event=>{
         saveCart(cart)
         cartCurrent = cartCurrent +1
         document.querySelector(".cart-total").innerText = cartCurrent 
+        reloadCart()
+        
     }else if (event.target.classList.contains("fa-circle-minus")){
         let id = event.target.id
         let tempItem = cart.find(item => item.id ===id)
@@ -84,6 +99,7 @@ cartList.addEventListener("click",event=>{
         saveCart(cart)
         cartCurrent = cartCurrent -1
         document.querySelector(".cart-total").innerText = cartCurrent
+        reloadCart()
         }else if (tempItem.value=1){
         let removeItem = event.target;    
         tempItem.value = tempItem.value - 1
@@ -105,7 +121,6 @@ cartList.addEventListener("click",event=>{
         document.getElementById(tempButton).classList.remove("btn-disable")
         }
         
-
     }else if (event.target.classList.contains("fa-trash-can")){
         let removeItem = event.target;
         let id = removeItem.id;
@@ -146,19 +161,37 @@ const displayProducts = () =>{
                 break
             }
         }
-        console.log(tempBag)
         bagButtonValue = tempBag?"In Cart":"<i class='fas fa-shopping-cart'></i>add to bag"
         bagClass = tempBag?" btn-disable":""
-        result += `<div class="product">
+        if (category.value === "all"){
+            result += `<div class="product">
             <img src=${product.img} class="product-image" alt="product">
             <h3>${product.name}</h3>
             <h4>£${product.price}</h4>
             <p class="bag-btn${bagClass}" id=btn-${product.id}>
             ${bagButtonValue}</p>
             </div>`
+        }else{    
+            if(category.value===product.type){
+                result += `<div class="product">
+            <img src=${product.img} class="product-image" alt="product">
+            <h3>${product.name}</h3>
+            <h4>£${product.price}</h4>
+            <p class="bag-btn${bagClass}" id=btn-${product.id}>
+            ${bagButtonValue}</p>
+            </div>`
+            }
+        }
 })
 
     productsContainer.innerHTML = result})   
+}
+
+const closeMenu = () =>{
+    mainMenu.style.display="none"
+}
+const showMenu = () =>{
+    mainMenu.style.display="block"
 }
 
 const showCart = () => {
@@ -179,6 +212,7 @@ const getCart = () =>{
 const renderAll = () =>{
     //update cart with local storage//
     cart = getCart()
+    cartCurrent=0
     cart.forEach(item => {
         cartCurrent = cartCurrent+item.value
     })
@@ -190,8 +224,8 @@ const renderAll = () =>{
     }
     //render product list
     displayProducts()
-
     //render cart list
+
     let result = ""
         cart.forEach(product => {
             result += `
@@ -199,6 +233,7 @@ const renderAll = () =>{
                 <img src=${product.img}>
                 <div class="cart-item-value">
                     <p>${product.name}</p>
+                    <p>£${(product.price*product.value).toFixed(2)}</p>
                     <div class="cart-item-qty">
                         <i class="fa-solid fa-circle-minus" id=${product.id}></i><p>${product.value}</p><i class="fa-solid fa-circle-plus" id=${product.id}></i>
                         <i class="fa-solid fa-trash-can" id=${product.id}></i>
@@ -213,6 +248,25 @@ const renderAll = () =>{
 }
 renderAll()
 
+const reloadCart =()=>{
+    let result = ""
+        cart.forEach(product => {
+            result += `
+            <div class="cart-item">
+                <img src=${product.img}>
+                <div class="cart-item-value">
+                    <p>${product.name}</p>
+                    <p>£${(product.price*product.value).toFixed(2)}</p>
+                    <div class="cart-item-qty">
+                        <i class="fa-solid fa-circle-minus" id=${product.id}></i><p>${product.value}</p><i class="fa-solid fa-circle-plus" id=${product.id}></i>
+                        <i class="fa-solid fa-trash-can" id=${product.id}></i>
+                    </div>
+                </div>
+            </div>
+            `})
+        cartList.innerHTML = result
+}
+
 //payment
 btnPayment.addEventListener("click",()=>{
     paymentDOM.style.display="block"
@@ -222,6 +276,24 @@ closePaymentButton.addEventListener("click",()=>{
     paymentDOM.style.display="none"
 })
 
+const paymentSubmit=()=>{
+    localStorage.clear()
+    formDOM.innerHTML="Payment successful"
+    setTimeout(()=>location.reload(),2000)
+}
+const handleForm=event=> { 
+    event.preventDefault();
+    localStorage.clear()
+    formDOM.innerHTML="Payment successful"
+    setTimeout(()=>location.reload(),2000)
+} 
+formDOM.addEventListener('submit', handleForm);
+
+const sorting = () =>{
+    displayProducts()
+}
+
+category.addEventListener("change",sorting)
 
 //end of main function
 

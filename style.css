@@ -24,7 +24,10 @@ body {
     margin-left: 50px;
     font-size: 36px;
   }
-
+a{
+  text-decoration: none;
+  color: var(--mainWhite);
+}
 /*========Nav Bar=======*/
 .nav-container{
     position: sticky;
@@ -36,43 +39,74 @@ body {
     justify-content: space-between;
     background-color: var(--mainBlack);
     align-items: center;
+    color: var(--mainWhite);
+    font-size: 1.5em;
 }
 .logo{
+  font-size: 30px;
+}
+
+.nav-container i:hover,
+.nav-container i:active{
+  color: var(--secondaryColor);
+}
+
+.fa-bars{
+  cursor: pointer;
+  margin-left:15px;
+}
+
+#main-menu{
+  position:fixed;
+  top:60px;
+  left: 0px;
+  width: 150px;
+  height: 250px;
+  background-color: var(--mainBlack);
   color: var(--mainWhite);
-  font-size: 1.5em;
-  margin-left: 1em;
+  display: none;
+  text-align: right;
+}
+#main-menu-main{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.menu-item{
+  font-size: 20px;
+  margin-top: 25px;
 }
 
-.nav-bar{
-    display: flex;
+.menu-item:hover,
+.menu-item:active{
+  color: var(--secondaryColor);
+  cursor: pointer;
 }
 
-.nav-menu{
-    display: flex;
+#btn-menu-close{
+  margin-right: 10px;
 }
-.nav-item{
-    list-style: none;
-    margin-right: 20px;
+#btn-menu-close:hover,
+#btn-menu-close:active{
+  cursor: pointer;
+  color: var(--secondaryColor);
 }
 
 .fa-cart-shopping{
     cursor: pointer;
-    color: var(--mainWhite);
     margin-right: 15px;
-}
-a{
-  text-decoration: none;
-  color: var(--mainWhite);
 }
 
 .cart-total{
   position: absolute;
   right: 5px;
   top: 10px;
-  background-color: var(--secondaryColor);
+  background-color: var(--primaryColor);
   padding:  1px 3px;
   border-radius: 5px;
   display: none;
+  font-size: 16px;
+  color: var(--mainBlack);
 }
 #cart-empty{
   margin-top: 100px;
@@ -89,7 +123,6 @@ a{
 
 .hero{
   width:100%;
-  height: 500px;
 }
 .hero h1{
   padding-top: 0px;
@@ -141,7 +174,7 @@ a{
   color: white;
   padding: 25px 50px;
   position: absolute;
-  bottom: 150px;
+  bottom: 15%;
   width: 100%;
   text-align: left;
 }
@@ -265,7 +298,29 @@ a{
   .fa-shopping-cart {
     margin-right: 0.5rem;
   }
+.category-container{
+  width: 50%;
+  display: flex;
+  height: 40px;
+  margin: 15px auto;
+  justify-content:center;
+  align-items: center;
+  background: var(--mainGrey);
+  width: 80%;
+}
 
+
+.category-container p{
+  font-size: 18px;
+}
+
+.category-container select{
+  font-size: 16px;
+  width: 150px;
+  border:var(--mainBlack) 2px solid;
+  border-radius: 5px;
+  margin-left: 20px;
+}
 /*========End of Main=======*/
  
   .cart-container{
@@ -276,9 +331,10 @@ a{
     right: 0;
     position: fixed;
     z-index: 2;
-    display: none;
-    
+    display: none;  
   }
+
+  
   .cart-main{
     width: 300px;
     position: fixed;
@@ -322,13 +378,13 @@ a{
   .cart-item-value{
     display: flex;
     flex-direction: column;
-    align-items: center;
     margin-left: 20px;
     width: 100%;
-    height: 60px;
+    height: 75px;
     justify-content: space-between;
     align-items: flex-start;
   }
+
 .cart-item-qty{
   display: flex;
 }
@@ -369,20 +425,7 @@ a{
 /*========End of Cart=======*/ 
 /*=====About us======*/
 #about{
-  height: 500px;
   margin-top: 50px;
-}
-
-/*
-
-Contact
-
-*/
-footer{  
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
 }
 
 #allContacts{
@@ -393,14 +436,14 @@ footer{
   width: 100%;
   color: var(--mainWhite);
   padding-top: 50px;
-  padding-bottom: 100px;
+  padding-bottom: 50px;
   margin-top: 10px;
 }
 
 #hotline{
   max-width: 400px;
-  margin-left: 100px;
   margin-right: 100px;
+  margin-bottom: 50px;
 }
 #hotline p{
   margin-top: 15px;
@@ -491,9 +534,6 @@ label{
 /*========End of About us=======*/ 
 
 /*=====Location======*/
-#location{
-  height: 500px;
-}
 
 #shop-map{
   width: 500px;
@@ -504,7 +544,6 @@ label{
 
 .map-container{
   display: flex;
-  width: 100%;
   justify-content: center;
   margin-top: 20px;
 }
@@ -512,13 +551,13 @@ label{
 .address-container{
   display: flex;
   flex-direction: column;
-  width: 500px;
   background-color: var(--mainBlack);
   color: var(--mainWhite);
   padding: 25px;
   border-radius: 25px;
   margin-right: 50px;
   line-height: 25px;
+  max-width: 500px;
 }
 .address-container p{
   margin-left: 25px;
@@ -610,3 +649,55 @@ input{
 
 
 /*========End of Payment=======*/
+
+@media screen and (max-width:1000px) {
+  .map-container{
+    flex-direction: column;
+    align-items: center;
+  }
+  .address-container{
+    margin-right: 0px;
+    margin-bottom: 50px;
+  }
+  .payment-main{
+    width: 400px;
+  }
+  #payer-info{
+    flex-direction: column;
+  }
+  .slideshow-container{
+    width:600px;
+  }
+  #banner1,
+  #banner2,
+  #banner3{
+    font-size: 24px;
+  }
+}
+
+@media screen and (max-width:600px){
+  #input-message{
+    width: 250px;
+  }
+  #input-container{
+    flex-direction: column;
+  }
+  #shop-map{
+    width: 80%;
+  }
+  .products-container{
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+}
+#payment-email-container{
+  margin-left: 0px;
+  margin-bottom: 20px;
+}
+.slideshow-container{
+  width:400px;
+}
+#banner1,
+  #banner2,
+  #banner3{
+    font-size: 16px;
+  }
+}
