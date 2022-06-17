@@ -3,6 +3,10 @@ const openCartButton = document.getElementById("btn-cart")
 const closeCartButton = document.getElementById("btn-close")
 const cartDOM = document.querySelector(".cart-container")
 const cartList = document.querySelector(".cart-list")
+const btnPayment = document.querySelector(".btn-payment")
+const paymentDOM = document.querySelector(".payment-container")
+const closePaymentButton = document.getElementById("btn-payment-close")
+
 
 let cart = []
 let cartId = []
@@ -28,7 +32,8 @@ productsContainer.addEventListener("click",event=>{
         document.getElementById(id).innerHTML = "In Cart"
         document.getElementById(id).classList.add("btn-disable")
         addProduct(id)
-        showCart()}
+        //showCart()
+    }
 }})
 
 const addProduct =(id)=>{
@@ -56,6 +61,7 @@ const addProduct =(id)=>{
         //show cart item total
         document.querySelector(".cart-total").style.display ="block"
         document.querySelector(".cart-total").innerText = cartCurrent 
+        btnPayment.style.display="block"
         saveCart(cart)
 })}
 
@@ -88,6 +94,8 @@ cartList.addEventListener("click",event=>{
         cart = cart.filter(item=>item.id !== id)
         if(cartCurrent===0){
             document.querySelector(".cart-total").style.display ="none"
+            cartList.innerHTML = `<h3 id="cart-empty">Your cart is empty</h3>`
+            btnPayment.style.display="none"
         }
         saveCart(cart)
         let tempButton = ""
@@ -105,6 +113,7 @@ cartList.addEventListener("click",event=>{
         cartCurrent = cartCurrent -tempItem.value
         if(cartCurrent===0){
             document.querySelector(".cart-total").style.display ="none"
+            btnPayment.style.display="none"
         }
         document.querySelector(".cart-total").innerText = cartCurrent
         cartList.removeChild(removeItem.parentElement.parentElement.parentElement)
@@ -115,7 +124,9 @@ cartList.addEventListener("click",event=>{
         document.getElementById(tempButton).innerHTML = `<i class="fas fa-shopping-cart"></i>
         add to bag`
         document.getElementById(tempButton).classList.remove("btn-disable")
-        
+        if (cartCurrent==0){
+        cartList.innerHTML = `<h3 id="cart-empty">Your cart is empty</h3>`
+        }
     }   
 })
 
@@ -151,11 +162,11 @@ const displayProducts = () =>{
 }
 
 const showCart = () => {
-    cartDOM.classList.add("disable")    
+    cartDOM.classList.add("show")    
 }
 
 const closeCart = () =>{
-    cartDOM.classList.remove("disable")
+    cartDOM.classList.remove("show")
 }
 const saveCart = (cart) =>{
     localStorage.setItem("cart",JSON.stringify(cart))
@@ -175,6 +186,7 @@ const renderAll = () =>{
     document.querySelector(".cart-total").innerText = cartCurrent
     if(cartCurrent>0){
         document.querySelector(".cart-total").style.display ="block"
+        btnPayment.style.display="block"
     }
     //render product list
     displayProducts()
@@ -194,9 +206,22 @@ const renderAll = () =>{
                 </div>
             </div>
             `})
+        if (result===""){
+            result=`<h3 id="cart-empty">Your cart is empty</h3>`
+        }
         cartList.innerHTML = result
 }
 renderAll()
+
+//payment
+btnPayment.addEventListener("click",()=>{
+    paymentDOM.style.display="block"
+})
+
+closePaymentButton.addEventListener("click",()=>{
+    paymentDOM.style.display="none"
+})
+
 
 //end of main function
 

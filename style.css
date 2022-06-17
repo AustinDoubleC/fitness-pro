@@ -12,6 +12,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    scroll-behavior: smooth;
   }
 body {
     color: var(--mainBlack);
@@ -73,7 +74,10 @@ a{
   border-radius: 5px;
   display: none;
 }
-
+#cart-empty{
+  margin-top: 100px;
+  text-align: center;
+}
 
 /*========End of Nav Bar=======*/
 /*========Hero=======*/
@@ -265,18 +269,27 @@ a{
 /*========End of Main=======*/
  
   .cart-container{
-    width: 300px;
+    width: 100%;
     height: calc(100% - 60px);
-    background: var(--mainGrey);
+    background-color: rgba(0,0,0,0.5);
+    top: 60px;
+    right: 0;
+    position: fixed;
+    z-index: 2;
+    display: none;
+    
+  }
+  .cart-main{
+    width: 300px;
     position: fixed;
     top: 60px;
     right: 0;
-    z-index: 2;
-    display: none;
+    z-index: 3;
+    height: calc(100% - 60px);
+    background-color: var(--mainGrey);
     overflow: auto;
   }
-
-  .disable{
+  .show{
     display: block;
   }
 
@@ -332,6 +345,27 @@ a{
   cursor: pointer;
   color: var(--secondaryColor);
 }
+
+.btn-payment{
+  text-align: center;
+  padding:5px;
+  background-color: var(--primaryColor);
+  color: var(--mainBlack);
+  border-radius: 25px;
+  width: 200px;
+  margin:20px auto;
+  display: none;
+}
+.btn-payment:hover,
+.btn-payment:active{
+  background-color: var(--secondaryColor);
+  color: var(--mainWhite);
+  cursor: pointer;
+  transition: var(--mainTransition);
+}
+
+
+
 /*========End of Cart=======*/ 
 /*=====About us======*/
 #about{
@@ -360,7 +394,7 @@ footer{
   color: var(--mainWhite);
   padding-top: 50px;
   padding-bottom: 100px;
-  margin-top: 50px;
+  margin-top: 10px;
 }
 
 #hotline{
@@ -464,14 +498,115 @@ label{
 #shop-map{
   width: 500px;
 }
+#travel{
+  margin-top: 50px;
+}
 
 .map-container{
   display: flex;
-  width: 90%;
-  justify-content: space-around;
+  width: 100%;
+  justify-content: center;
+  margin-top: 20px;
 }
+
 .address-container{
   display: flex;
   flex-direction: column;
+  width: 500px;
+  background-color: var(--mainBlack);
+  color: var(--mainWhite);
+  padding: 25px;
+  border-radius: 25px;
+  margin-right: 50px;
+  line-height: 25px;
+}
+.address-container p{
+  margin-left: 25px;
 }
 /*========End of Location=======*/ 
+/*======Payment======*/
+.payment-container{
+  z-index:4;
+  width: 100%;
+  height:100%;
+  position: fixed;
+  top:0px;
+  background-color: rgba(0,0,0,0.5);
+  display: none;
+}
+.payment-main{
+  width: 600px;
+  margin: 100px auto;
+  background-color: var(--mainWhite);
+  padding: 25px 10px;
+  border-radius: 10px;
+}
+
+#btn-payment-close{
+  cursor: pointer;
+  text-align: right;
+}
+
+#btn-payment-close:hover,
+#btn-payment-close:active{
+  color: var(--secondaryColor);
+}
+
+#payment-form{
+background-color: var(--mainGrey);
+}
+#payment-title{
+  margin-bottom: 50px;
+}
+label{
+  font-size: 16px;
+  margin-right: 10px;
+}
+#payer-info{
+  display: flex;
+}
+
+#payment-email-container
+{
+  margin-left: 20px;
+}
+#payment-name-container{
+  margin-bottom: 20px;
+}
+#payment-card-container{
+  margin-bottom: 20px;
+}
+#payment-month,
+#payment-year,
+#payment-cvv{
+  width: 40px;
+}
+#payment-year{
+  margin-right: 50px;
+}
+#payment-year-label{
+margin-right: 0;
+}
+
+input{
+  font-size: 16px;
+}
+
+#payment-submit{
+  font-size:20px;
+  background-color: var(--primaryColor);
+  padding: 5px 50px;
+  border-radius: 10px;
+  border: none;
+}
+#btn-submit-container{
+  width: 100%;
+  margin-top: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+
+/*========End of Payment=======*/

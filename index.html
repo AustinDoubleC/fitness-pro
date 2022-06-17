@@ -31,27 +31,27 @@
         <div class="slideshow-container">
             <!-- Full-width images with number and caption text -->
             <div class="mySlides fade">
-              <a href="#products"><img src="./image/banner1.png" style="width:100%"></a>
+              <a href="#products"><img src="./image/banner1.png" style="width:100%">
               <div id="banner1">
                 <h2>Dreaming of Summer body?</h2>
                 <h3>Shop our equipment to get it.</h3>
-              </div>
+              </div></a>
             </div>
           
             <div class="mySlides fade">
-                <a href="#location"><img src="image/banner2.jpg" style="width:100%"></a>
+                <a href="#location"><img src="image/banner2.jpg" style="width:100%">
               <div id="banner2">
                 <h2>New equipment in store</h2>
                 <h3>Visit our flagship store</h3>
-              </div>
+              </div></a>
             </div>
           
             <div class="mySlides fade">
-                <a href="#about"><img src="image/banner3.jpg" style="width:100%"></a>
+                <a href="#about"><img src="image/banner3.jpg" style="width:100%">
               <div id="banner3">
                 <h3>Don't know how to build your home gym?</h3>
                 <h2>Contact our advisor for advice</h2>
-              </div>
+              </div></a>
             </div>
           
             <!-- Next and previous buttons -->
@@ -79,9 +79,13 @@
             <div class="map-container">
                 <div class="address-container">
                     <h3>Address:</h3>
-                    <p>Victoria Center</p>
+                    <p>Victoria Centre</p>
                     <p>Lower Parliament St</p>
                     <p>Nottingham NG1 3QN</p>
+                    <h3 id="travel">How to get here:</h3>
+                    <p>Train: 15-20 minute walk from Nottingham train station</p>
+                    <p>Tram: 5 minute walk from Royal Centre tram stop</p>
+                    <p>Bus: Bus station just outside the north end of the centre</p>
                 </div>
                 <img src="./image/map.png" id="shop-map">
             </div>
@@ -107,7 +111,7 @@
                       <div class="input">
                           <label>Email</label>
                           <input type="email" id="input-email" name="email" placeholder="your email" required>
-                          <input type="hidden" name="_next" value="https://austindoublec.github.io/portfolio/thankyou.html">
+                          <input type="hidden" name="_next" value="https://austindoublec.github.io/fitness-pro/">
                       </div>
                   </div>
                       <div class="input">
@@ -119,13 +123,49 @@
           </div>
         </section>
     </main>
+
+    <!--Cart-->
     <div class="cart-container">
-        <p id="btn-close"><i class="fa-solid fa-xmark"></i> close</p>
-        <div class="cart-list">
+        <div class="cart-main">
+            <p id="btn-close"><i class="fa-solid fa-xmark"></i> close</p>
+            <div class="cart-list">
+            </div>
+            <h3 class="btn-payment">Proceed to payment</h3>
+        </div>
+    </div>
+    <!--payment page-->
+    <div class="payment-container">
+        <div class="payment-main">
+            <p id="btn-payment-close"><i class="fa-solid fa-xmark"></i> close</p>
+            <h2 id="payment-title">Payment Information</h2>
+            <form class="payment-form">
+                <div id="payer-info">
+                    <div id="payment-name-container">
+                        <label for="payment-name">Name on card</label>
+                        <input type="text" id="payment-name" placeholder="name" required><br>
+                    </div>
+                    <div id="payment-email-container">
+                        <label for="payment-email">Email</label>
+                        <input type="email" id="payment-email" placeholder="email" required><br>
+                    </div>
+                </div>
+                <div id="payment-card-container">
+                    <label for="payment-card">Card number</label>
+                    <input type="text" id="payment-card" required>
+                </div>
+                <label for="payment-month">Expiry month</label>
+                <input type="text" id="payment-month" required>
+                <label for="payment-year" id="payment-year-label">/</label>
+                <input type="text" id="payment-year" required>
+                <label for="payment-cvv" id="payment-cvv-label">CVV</label>
+                <input type="text" id="payment-cvv" required><br>
+                <div id="btn-submit-container">
+                    <button type="submit" id="payment-submit">Submit</button>
+                </div>
+            </form>
         </div>
     </div>
     <footer></footer>
-
     <script src="index.js"></script>
 </body>
 </html>
