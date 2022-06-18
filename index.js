@@ -10,11 +10,11 @@ const formDOM = document.querySelector(".payment-form")
 const category = document.getElementById("category")
 const btnMainMenu = document.getElementById("btn-main-menu")
 const mainMenu =document.getElementById("main-menu")
-const btnMenuClose = document.getElementById("btn-menu-close")
 const cartTotalValue = document.getElementById("cartTotalValue")
 const productDOM = document.getElementById("product-detail")
 const productMain = document.getElementById("product-detail-container")
 const btnProductClose = document.getElementById("btn-product-close")
+const btnMainMenuClose = document.getElementById("btn-main-menu-close")
 
 
 let cart = []
@@ -24,7 +24,7 @@ let cartValue = 0
 let cartTotal = 0
 openCartButton.addEventListener("click",()=>showCart())
 closeCartButton.addEventListener("click",()=>closeCart())
-btnMenuClose.addEventListener("click",()=>closeMenu())
+btnMainMenuClose.addEventListener("click",()=>closeMenu())
 mainMenu.addEventListener("mouseleave",()=>closeMenu())
 btnMainMenu.addEventListener("click",()=>showMenu())
 btnProductClose.addEventListener("click",()=>closeProductDetail())
@@ -210,9 +210,13 @@ const displayProducts = () =>{
 
 const closeMenu = () =>{
     mainMenu.style.display="none"
+    btnMainMenuClose.style.display="none"
+    btnMainMenu.style.display="block"
 }
 const showMenu = () =>{
     mainMenu.style.display="block"
+    btnMainMenuClose.style.display="block"
+    btnMainMenu.style.display="none"
 }
 
 const showCart = () => {
@@ -309,6 +313,7 @@ const reloadCart =()=>{
 //payment
 btnPayment.addEventListener("click",()=>{
     paymentDOM.style.display="block"
+    document.getElementById("payment-total").innerText=`Total amount: £${cartTotal.toFixed(2)}`
 })
 
 closePaymentButton.addEventListener("click",()=>{
