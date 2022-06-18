@@ -3,42 +3,50 @@
         "name":"Adjustable bench",
         "price":"279.95",
         "type":"bench",
-        "img":"./image/adjustable_bench.jpg"
+        "img":"./image/adjustable_bench.jpg",
+        "spec":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Felis donec et odio pellentesque diam. Tellus orci ac auctor augue mauris augue neque gravida."
 },{"id":"2",
     "name":"Barbell",
     "price":"149.95",
     "type":"weight",
-    "img":"./image/barbell.jpg"
+    "img":"./image/barbell.jpg",
+    "spec":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Felis donec et odio pellentesque diam. Tellus orci ac auctor augue mauris augue neque gravida."
 },{"id":"3",
     "name":"Flat bench",
     "price":"69.95",
     "type":"bench",
-    "img":"./image/bench.jpg"
+    "img":"./image/bench.jpg",
+    "spec":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Felis donec et odio pellentesque diam. Tellus orci ac auctor augue mauris augue neque gravida."
 },{"id":"4",
     "name":"Iron plate set",
     "price":"109.95",
     "type":"weight",
-    "img":"./image/plate.jpg"
+    "img":"./image/plate.jpg",
+    "spec":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Felis donec et odio pellentesque diam. Tellus orci ac auctor augue mauris augue neque gravida."
 },{"id":"5",
     "name":"Dumbbell",
     "price":"259.95",
     "type":"weight",
-    "img":"./image/dumbbell.jpg"
+    "img":"./image/dumbbell.jpg",
+    "spec":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Felis donec et odio pellentesque diam. Tellus orci ac auctor augue mauris augue neque gravida."
 },{"id":"6",
     "name":"Power rack",
     "price":"359.95",
     "type":"rack",
-    "img":"./image/powerrack.jpg"
+    "img":"./image/powerrack.jpg",
+    "spec":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Felis donec et odio pellentesque diam. Tellus orci ac auctor augue mauris augue neque gravida."
 },{"id":"7",
     "name":"Squat rack",
     "price":"149.95",
     "type":"rack",
-    "img":"./image/squatrack.jpg"
+    "img":"./image/squatrack.jpg",
+    "spec":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Felis donec et odio pellentesque diam. Tellus orci ac auctor augue mauris augue neque gravida."
 },{"id":"8",
     "name":"Cable machine",
     "price":"249.95",
     "type":"rack",
-    "img":"./image/cable_machine.jpg"
+    "img":"./image/cable_machine.jpg",
+    "spec":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Felis donec et odio pellentesque diam. Tellus orci ac auctor augue mauris augue neque gravida."
 }
 ]
 }

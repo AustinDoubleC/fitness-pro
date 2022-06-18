@@ -12,6 +12,9 @@ const btnMainMenu = document.getElementById("btn-main-menu")
 const mainMenu =document.getElementById("main-menu")
 const btnMenuClose = document.getElementById("btn-menu-close")
 const cartTotalValue = document.getElementById("cartTotalValue")
+const productDOM = document.getElementById("product-detail")
+const productMain = document.getElementById("product-detail-container")
+const btnProductClose = document.getElementById("btn-product-close")
 
 
 let cart = []
@@ -24,15 +27,15 @@ closeCartButton.addEventListener("click",()=>closeCart())
 btnMenuClose.addEventListener("click",()=>closeMenu())
 mainMenu.addEventListener("mouseleave",()=>closeMenu())
 btnMainMenu.addEventListener("click",()=>showMenu())
-
+btnProductClose.addEventListener("click",()=>closeProductDetail())
 
 const getProducts =async ()=>{
         let result = await fetch("product.json")
         let data = await result.json();
         let products = data.items;
         products = products.map(item => {
-            const {id, name, price, type, img} = item
-            return {id, name, price,type, img}
+            const {id, name, price, type, img, spec} = item
+            return {id, name, price,type, img, spec}
         })
         return products
 }
@@ -46,7 +49,30 @@ productsContainer.addEventListener("click",event=>{
         addProduct(id)
         //showCart()
     }
-}})
+    
+    }else if (event.target.classList.contains("product-image")){
+        let id = event.target.id
+        showProductDetail(id)
+    }
+})
+
+const showProductDetail = (id) =>{
+    getProducts().then(products=>{
+        id=id.slice(4)
+        const productToShow = products.find(product=>product.id==id)
+        console.log(productToShow)
+        productMain.innerHTML = `
+        <img src=${productToShow.img}>
+        <div>
+        <h2>${productToShow.name}</h2>
+        <h3>£${productToShow.price}</h3>
+        <p>${productToShow.spec}</p>
+        </div>
+        `
+        productDOM.style.display="block"
+    })
+}
+
 
 const addProduct =(id)=>{
     getProducts().then(products=>{
@@ -160,7 +186,7 @@ const displayProducts = () =>{
         bagClass = tempBag?" btn-disable":""
         if (category.value === "all"){
             result += `<div class="product">
-            <img src=${product.img} class="product-image" alt="product">
+            <img src=${product.img} class="product-image" alt="product" id=img-${product.id}>
             <h3>${product.name}</h3>
             <h4>£${product.price}</h4>
             <p class="bag-btn${bagClass}" id=btn-${product.id}>
@@ -169,7 +195,7 @@ const displayProducts = () =>{
         }else{    
             if(category.value===product.type){
                 result += `<div class="product">
-            <img src=${product.img} class="product-image" alt="product">
+            <img src=${product.img} class="product-image" alt="product" id=img-${product.id}>
             <h3>${product.name}</h3>
             <h4>£${product.price}</h4>
             <p class="bag-btn${bagClass}" id=btn-${product.id}>
@@ -202,6 +228,10 @@ const saveCart = (cart) =>{
 
 const getCart = () =>{
     return localStorage.getItem("cart")?JSON.parse(localStorage.getItem("cart")):[]
+}
+
+const closeProductDetail =()=>{
+    productDOM.style.display="none"
 }
 
 const renderAll = () =>{
