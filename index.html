@@ -51,14 +51,7 @@
             <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
             <a class="next" onclick="plusSlides(1)">&#10095;</a>
           </div>
-          <br>
-          
-          <!-- The dots/circles -->
-          <div style="text-align:center">
-            <span class="dot" onclick="currentSlide(1)"></span>
-            <span class="dot" onclick="currentSlide(2)"></span>
-            <span class="dot" onclick="currentSlide(3)"></span>
-          </div>
+
     </header>
     <main>
         <section class="main-section" id="products">
@@ -144,6 +137,7 @@
             <p id="btn-payment-close"><i class="fa-solid fa-xmark"></i> close</p>
             <h2 id="payment-title">Payment Information</h2>
             <h3 id="payment-total"></h3>
+            <p id="payment-alert"></p>
             <form class="payment-form">
                 <div id="payer-info">
                     <div id="payment-name-container">
@@ -166,7 +160,7 @@
                 <label for="payment-cvv" id="payment-cvv-label">CVV</label>
                 <input type="text" id="payment-cvv" required><br>
                 <div id="btn-submit-container">
-                    <button type="submit" id="payment-submit">Submit</button>
+                    <p id="payment-submit">Submit</p>
                 </div>
             </form>
         </div>
@@ -174,11 +168,21 @@
     <div id="main-menu">
         <div id="main-menu-main">
             <a href="#home" class="menu-item">HOME</a>
-            <a href="#products" class="menu-item">PRODUCTS</a>
+            <a href="#products" class="menu-item" id="btn-all">PRODUCTS</a>
+            <div id="sub-menu">
+                <a href="#products" class="subMenu-item" id="btn-weight">Weight</a>
+                <a href="#products" class="subMenu-item" id="btn-rack">Rack</a>
+                <a href="#products" class="subMenu-item" id="btn-bench">Bench</a>
+            </div>
             <a href="#location" class="menu-item">LOCATION</a>
-            <a href="#about" class="menu-item">ABOUT</a>
+            <a href="#about" class="menu-item">ABOUT</a>  
         </div>
     </div>
+    <div id="sub-menu">
+        <a href="#products" class="subMenu-item" id="btn-weight">Weight</a>
+        <a href="#products" class="subMenu-item" id="btn-rack">Rack</a>
+        <a href="#products" class="subMenu-item" id="btn-bench">Bench</a>
+    <div>
     <div id="product-detail">
         
         <div id="product-detail-main">

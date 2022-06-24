@@ -72,14 +72,26 @@ a{
   position:fixed;
   top:60px;
   left: 0px;
-  width: 150px;
-  height: 250px;
+  width: 120px;
+  height:250px;
   background-color: var(--mainBlack);
   color: var(--mainWhite);
   display: none;
   text-align: right;
   padding: 10px 0px;
 }
+
+#sub-menu{
+  display: none;
+  position: fixed;
+  flex-direction: column;
+  top: 132px;
+  left:120px;
+  width: 100px;
+  background-color: var(--mainBlack);
+  text-align: center;
+}
+
 #main-menu-main{
   display: flex;
   flex-direction: column;
@@ -91,6 +103,19 @@ a{
   text-align: center;
   padding:10px 0px;
   margin-top: 10px;
+}
+
+.subMenu-item{
+  font-size: 18px;
+  width: 100%;
+  padding:10px 0px;
+}
+
+.subMenu-item:hover,
+.subMenu-item:active{
+  color: var(--secondaryColor);
+  cursor: pointer;
+  background-color: var(--mainGrey);
 }
 
 .menu-item:hover,
@@ -135,19 +160,16 @@ a{
 .hero h1{
   padding-top: 0px;
 }
-/* Slideshow container */
+/* Slideshow */
 .slideshow-container {
   max-width: 1000px;
   position: relative;
   margin: auto;
 }
 
-/* Hide the images by default */
 .mySlides {
   display: none;
 }
-
-/* Next & previous buttons */
 .prev, .next {
   cursor: pointer;
   position: absolute;
@@ -155,7 +177,8 @@ a{
   width: auto;
   margin-top: -22px;
   padding: 16px;
-  color: white;
+  color: var(--mainBlack);
+  background-color: var(--mainGrey);
   font-weight: bold;
   font-size: 18px;
   transition: 0.6s ease;
@@ -163,18 +186,14 @@ a{
   user-select: none;
 }
 
-/* Position the "next button" to the right */
 .next {
   right: 0;
   border-radius: 3px 0 0 3px;
 }
 
-/* On hover, add a black background color with a little bit see-through */
 .prev:hover, .next:hover {
   background-color: rgba(0,0,0,0.8);
 }
-
-/* Caption text */
 #banner1 {
   color: var(--mainBlack);
   font-size: 36px;
@@ -207,23 +226,9 @@ a{
   text-align: center;
 }
 
-/* The dots/bullets/indicators */
-.dot {
-  cursor: pointer;
-  height: 15px;
-  width: 15px;
-  margin: 0 2px;
-  background-color: #bbb;
-  border-radius: 50%;
-  display: inline-block;
-  transition: background-color 0.6s ease;
-}
-
-.active, .dot:hover {
+.active {
   background-color: #717171;
 }
-
-/* Fading animation */
 .fade {
   animation-name: fade;
   animation-duration: 1.5s;
@@ -358,9 +363,6 @@ a{
     height: calc(100% - 60px);
     background-color: var(--mainGrey);
     overflow: auto;
-  }
-  .show{
-    display: block;
   }
 
   #btn-close{
@@ -666,7 +668,12 @@ input{
   justify-content: center;
 }
 
-
+#payment-alert{
+  color: red;
+  font-style: italic;
+  margin-top: 0px;
+  margin-bottom: 10px;
+}
 
 /*========End of Payment=======*/
 

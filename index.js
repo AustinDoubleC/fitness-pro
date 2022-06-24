@@ -10,12 +10,17 @@ const formDOM = document.querySelector(".payment-form")
 const category = document.getElementById("category")
 const btnMainMenu = document.getElementById("btn-main-menu")
 const mainMenu =document.getElementById("main-menu")
+const subMenu = document.getElementById("sub-menu")
 const cartTotalValue = document.getElementById("cartTotalValue")
 const productDOM = document.getElementById("product-detail")
 const productMain = document.getElementById("product-detail-container")
 const btnProductClose = document.getElementById("btn-product-close")
 const btnMainMenuClose = document.getElementById("btn-main-menu-close")
-
+const btnProductAll = document.getElementById("btn-all")
+const btnRack = document.getElementById("btn-rack")
+const btnWeight = document.getElementById("btn-weight")
+const btnBench = document.getElementById("btn-bench")
+const btnPaymentSubmit = document.getElementById("payment-submit")
 
 let cart = []
 let cartId = []
@@ -28,6 +33,28 @@ btnMainMenuClose.addEventListener("click",()=>closeMenu())
 mainMenu.addEventListener("mouseleave",()=>closeMenu())
 btnMainMenu.addEventListener("click",()=>showMenu())
 btnProductClose.addEventListener("click",()=>closeProductDetail())
+btnWeight.addEventListener("click",()=>changeDisplay("weight"))
+btnRack.addEventListener("click",()=>changeDisplay("rack"))
+btnBench.addEventListener("click",()=>changeDisplay("bench"))
+btnProductAll.addEventListener("click",()=>changeDisplay("all"))
+btnProductAll.addEventListener("mouseover",()=>showSubMenu())
+subMenu.addEventListener("mouseleave",()=>closeSubMenu())
+btnPaymentSubmit.addEventListener("click",()=>{handleForm()})
+
+
+const showSubMenu = ()=>{
+    subMenu.style.display="flex"
+}
+
+const closeSubMenu = ()=>{
+    subMenu.style.display="none"
+
+}
+
+const changeDisplay = (type)=>{
+    category.value=type
+    displayProducts()
+}
 
 const getProducts =async ()=>{
         let result = await fetch("product.json")
@@ -220,11 +247,11 @@ const showMenu = () =>{
 }
 
 const showCart = () => {
-    cartDOM.classList.add("show")    
+    cartDOM.style.display="block"    
 }
 
 const closeCart = () =>{
-    cartDOM.classList.remove("show")
+    cartDOM.style.display="none"
 }
 const saveCart = (cart) =>{
     localStorage.setItem("cart",JSON.stringify(cart))
@@ -318,6 +345,13 @@ btnPayment.addEventListener("click",()=>{
 
 closePaymentButton.addEventListener("click",()=>{
     paymentDOM.style.display="none"
+    paymentAlert.innerText = ""
+    paymentName.value=""
+    paymentEmail.value=""
+    paymentCard.value=""
+    paymentMonth.value=""
+    paymentYear.value=""
+    paymentCvv.value=""
 })
 
 const paymentSubmit=()=>{
@@ -325,19 +359,12 @@ const paymentSubmit=()=>{
     formDOM.innerHTML="Payment successful"
     setTimeout(()=>location.reload(),2000)
 }
-const handleForm=event=> { 
-    event.preventDefault();
-    localStorage.clear()
-    formDOM.innerHTML="Payment successful"
-    setTimeout(()=>location.reload(),2000)
-} 
-formDOM.addEventListener('submit', handleForm);
 
-const sorting = () =>{
+const filtering = () =>{
     displayProducts()
 }
 
-category.addEventListener("change",sorting)
+category.addEventListener("change",filtering)
 
 //end of main function
 
@@ -346,12 +373,9 @@ category.addEventListener("change",sorting)
 let slideIndex = 1;
 showSlides(slideIndex);
 
-// Next/previous controls
 function plusSlides(n) {
   showSlides(slideIndex += n);
 }
-
-// Thumbnail image controls
 function currentSlide(n) {
   showSlides(slideIndex = n);
 }
@@ -359,17 +383,114 @@ function currentSlide(n) {
 function showSlides(n) {
   let i;
   let slides = document.getElementsByClassName("mySlides");
-  let dots = document.getElementsByClassName("dot");
   if (n > slides.length) {slideIndex = 1}
   if (n < 1) {slideIndex = slides.length}
   for (i = 0; i < slides.length; i++) {
     slides[i].style.display = "none";
   }
-  for (i = 0; i < dots.length; i++) {
-    dots[i].className = dots[i].className.replace(" active", "");
-  }
   slides[slideIndex-1].style.display = "block";
-  dots[slideIndex-1].className += " active";
 }
 
-//end of slideshow
+//Payment handling
+const paymentAlert = document.getElementById("payment-alert")
+let paymentError = ""
+
+const handleForm=()=> { 
+if (nameCheck()&&emailCheck()&&creditCardCheck()&&expiryCheck()&&cvvCheck()){
+    paymentAlert.innerText = ""
+    localStorage.clear()
+    formDOM.innerHTML="Payment successful"
+    setTimeout(()=>location.reload(),2000)
+}else {
+    paymentAlert.innerText = paymentError
+}
+    
+} 
+const paymentName = document.getElementById("payment-name")
+const paymentEmail = document.getElementById("payment-email")
+const paymentCard = document.getElementById("payment-card")
+const paymentMonth = document.getElementById("payment-month")
+const paymentYear = document.getElementById("payment-year")
+const paymentCvv = document.getElementById("payment-cvv")
+
+const nameCheck=()=>{
+    if (paymentName.value){
+        if (!/[^a-zA-Z]/.test(paymentName.value)){
+            return true
+        }else{
+            paymentError="#Name can only contains characters"
+        }
+    }else paymentError ="#Enter your name"
+}
+const emailCheck=()=>{
+    if (paymentEmail.value){
+        if (paymentEmail.value.includes("@")){
+            let tempEmail = paymentEmail.value.split("@")
+            if (tempEmail[0] && tempEmail[1]){
+            return true
+            }else paymentError = "Invalid email"
+        }else paymentError ="#Email should contains @"
+    }else paymentError ="#Enter your email"
+}
+
+const creditCardCheck = ()=>{
+    if (paymentCard.value){
+        if (validateCardNumber(paymentCard.value)){
+        return true
+        }else{
+            paymentError = "#Invalid card number"    
+        }
+    }else {
+        paymentError = "Enter your card number"
+    }
+}
+
+const validateCardNumber = number => {
+    const regex = new RegExp("^[0-9]{13,19}$");
+    if (!regex.test(number)){
+        return false;
+    }
+    return luhnCheck(number);
+}
+
+const luhnCheck = val => {
+    let checksum = 0; 
+    let j = 1;
+    for (let i = val.length - 1; i >= 0; i--) {
+      let calc = 0;
+      calc = Number(val.charAt(i)) * j;
+      if (calc > 9) {
+        checksum = checksum + 1;
+        calc = calc - 10;
+      }
+      checksum = checksum + calc;
+      if (j == 1) {
+        j = 2;
+      } else {
+        j = 1;
+      }
+    }
+    return (checksum % 10) == 0;
+}
+
+const expiryCheck = ()=>{
+    if (paymentMonth.value && paymentYear.value){
+        if (/^\d+$/.test(paymentMonth.value) && /^\d+$/.test(paymentYear.value)){
+            if (paymentMonth.value >=1 && paymentMonth.value <=12 && paymentMonth.value.length ===2){
+                if (paymentYear.value >=0 && paymentYear.value <=99 && paymentYear.value.length ===2){
+                    return true
+                }else paymentError = "Year value should between 00-99"
+            }else paymentError = "Month value should between 1-12"
+        }else paymentError = "Expiry date should only contains numbers"
+    }else paymentError = "Enter expiry date"
+}
+
+const cvvCheck = ()=>{
+    if (paymentCvv.value && paymentCvv.value){
+        if (/^\d+$/.test(paymentCvv.value) && /^\d+$/.test(paymentCvv.value)){
+            if (paymentCvv.value >=1 && paymentCvv.value <=999 && paymentCvv.value.length ===3){
+                return true
+            }else paymentError = "CVV value should between 000-999"
+        }else paymentError = "CVV should only contains numbers"
+    }else paymentError = "Enter CVV"
+}
